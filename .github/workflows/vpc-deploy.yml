@@ -11,21 +11,21 @@ jobs:
       contents: read
       id-token: write
     steps:
-      -name: clone our repository
+      - name: clone our repository
         uses: actions/checkout@v3
 
-      -name: Aws Authentication
+      - name: Aws Authentication
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::462691596489:role/github-actions-oidc
           aws-region: eu-west-1
           role-session-name: GithubVPCDeploy
 
-      -name: Terraform Set Up
+      - name: Terraform Set Up
         uses: hashicop/setup-terraform@v1
 
-      -name: Terraform initialization
+      - name: Terraform initialization
         run: terraform init
 
-      -name: Terraform planning
+      - name: Terraform planning
         run: terraform apply -auto-approve
