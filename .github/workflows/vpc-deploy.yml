@@ -22,10 +22,13 @@ jobs:
           role-session-name: GithubVPCDeploy
 
       - name: Terraform Set Up
-        uses: hashicop/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v1
 
       - name: Terraform initialization
         run: terraform init
 
       - name: Terraform planning
+        run: terraform plan
+
+      - name: Terraform applying
         run: terraform apply -auto-approve
