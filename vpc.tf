@@ -11,7 +11,7 @@ resource "aws_subnet" "public" {
   cidr_block = var.cidr_public
 
   tags = {
-    Name = "public_subnet"
+    Name = "public"
   }
 }
 
@@ -20,16 +20,18 @@ resource "aws_subnet" "private" {
   cidr_block = var.cidr_private
 
   tags = {
-    Name = "private_subnet"
+    Name = "private"
   }
 }
 
 resource "aws_subnet" "data" {
+  for_each = var.cidr_data
   vpc_id     = aws_vpc.lab_vpc.id
-  cidr_block = var.cidr_data
+  cidr_block = each.value
+  availability_zone = join("" , [var.aws_region, each.key])
 
   tags = {
-    Name = "data_subnet"
+    Name = join("", ["data-", each.key])
   }
 }
 

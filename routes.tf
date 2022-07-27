@@ -35,6 +35,7 @@ resource "aws_route_table_association" "private"{
 }
 
 resource "aws_route_table_association" "data" {
-  subnet_id      = aws_subnet.data.id
+  for_each = aws_subnet.data
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.nat_route_tbl.id
 }
