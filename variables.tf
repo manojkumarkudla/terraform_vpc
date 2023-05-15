@@ -1,5 +1,5 @@
 variable "vpc_name" {
-  description = "This is the vpc name"
+  description       = "This is the vpc name"
   type        = string
 }
 variable "aws_region" {
@@ -13,7 +13,7 @@ variable "vpc_cidr" {
 }
 
 variable "cidr_public" {
-  description = "This is the CIDR for the public subnet"
+  description =     "This is the CIDR for the public subnet"
 
 }
 
